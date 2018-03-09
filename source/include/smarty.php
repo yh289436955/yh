@@ -5,12 +5,12 @@
  * Date: 2018/3/8
  * Time: 17:18
  */
-require(CORE_PATH.'libs/marty.class.php');
+require(ROOT_PATH.'libs/smarty.class.php');
 
 //缓存路径设置
 $template_dir = ROOT_PATH.THEME_DIR.'/';
-$compile_dir = ROOT_PATH.'template_c/compile/';
-$cache_dir = ROOT_PATH.'template_c/cache/';
+$compile_dir = ROOT_PATH.'template_c/';
+$cache_dir = ROOT_PATH.'template_c/';
 
 
 if (defined('IN_ADMIN') && IN_ADMIN == TRUE) {
@@ -40,8 +40,7 @@ $smarty->right_delimiter = "}";
 //检查模板是否存在
 function template_exists($template) {
     global $smarty;
-
-    if (!$smarty->templateExists($template)){
+    if (!$smarty->template_exists($template)){
         exit('The template file "'.$template.'" is not found!');
     }
 }

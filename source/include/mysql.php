@@ -34,14 +34,14 @@ class MySQL
 
         if ($is_pconnect)
         {
-            if (!$this->db_link == @mysql_pconnect($db_host.':'.$db_port,$db_user,$db_pwd))
+            if (!$this->db_link = @mysql_pconnect($db_host.':'.$db_port,$db_user,$db_pwd))
             {
                 $this->halt('Can not connect to MySQL server!');
             }
         }
         else
         {
-            if (!$this->db_link == @mysql_connect($db_host.':'.$db_port,$db_user,$db_pwd))
+            if (!$this->db_link = @mysql_connect($db_host.':'.$db_port,$db_user,$db_pwd))
             {
                 $this->halt('Can not connect to MySQL server!');
             }

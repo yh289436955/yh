@@ -6,5 +6,8 @@
  * Time: 15:41
  */
 require('common.php');
-echo "后台";
+
+
+$smarty->display('admin.html')
+
 ?>

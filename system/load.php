@@ -10,6 +10,6 @@ define('ROOT_PATH', str_replace('\\', '/', dirname(dirname(__FILE__))).'/');
 define('CORE_PATH', ROOT_PATH.'source/');
 
 require(CORE_PATH.'init.php');
-
+require('./function.php');
 
 ?>
