@@ -4,8 +4,6 @@ html {
     height: 100%;
 }
 body{font:14px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;color: #666666;width: 100%;height: 100%;}
-a{text-decoration:none !important; color:#666666;}
-a:hover{text-decoration:none;color:#cd0200;}
 a:active,a:visited,a:link{text-decoration:none;}
 em{font-style:normal}
 li{list-style:none;}
@@ -17,7 +15,7 @@ p{word-wrap:break-word}
     vertical-align: middle!important;
 }
 body {
-    background: #f4f4f4 !important;
+    background: #3DB3F7;
     overflow-y:hidden;
 }
 input,select {
@@ -33,3 +31,85 @@ input[type='checkbox'],input[type='radio'] {
     display: table;
     clear: both;
 }
+.lf {
+    float: left;
+}
+.lg {
+    float: right;
+}
+.public-btn {
+    margin-bottom: 20px;
+}
+/*----------------------------header start-----------------------------*/
+.header {
+    width: 100%;
+    height: 70px;
+    padding: 0 20px;
+    line-height: 70px;
+    color: #ffffff;
+}
+.header .lf {
+    font-size: 26px;
+    letter-spacing: 10px;
+}
+.header .lg a {
+    color: #ffffff;
+}
+
+/*----------------------------header end-----------------------------*/
+
+
+/*----------------------------nav-left start-----------------------------*/
+.nav-left {
+    position: absolute;
+    left: 10px;
+    width: 200px;
+    background: rgb(238, 245, 247);
+    border: solid 1px #2386EC;
+    overflow-y: auto;
+}
+
+.nav-left-column {
+    width: 100%;
+    margin: 10px 0;
+}
+.nav-left-column .column-select {
+    width: 180px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+    background: #3DB3F7;
+    color: #ffffff;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.nav-left-column .column {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+/*----------------------------nav-left end-----------------------------*/
+
+
+/*----------------------------nav-right start-----------------------------*/
+.nav-right {
+    margin-left: 220px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: rgb(238, 245, 247);
+    border: solid 1px #2386EC;
+    overflow: auto;
+}
+/*----------------------------nav-right end-----------------------------*/
+
+
+/*----------------------------admin start-----------------------------*/
+
+.admin-h3 {
+    text-align: center;
+    margin-top: 20%;
+    letter-spacing: 5px;
+}
+
+/*----------------------------admin end-----------------------------*/

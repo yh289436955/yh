@@ -15,12 +15,13 @@ list($user_id,$user_pass) = $user_auth ? explode('@',authcode($user_auth,'DECODE
 $user_id = intval($user_id);
 $user_pass = addslashes($user_pass);
 
-if (!$user_id || $user_pass) {
+if (!$user_id || !$user_pass) {
     $user_id = 0;
     msgbox('您还没有登陆或无权限','./login.php');
 }
 $myself = array();
-$user = $DB->fetch_one("SELECT user_id, user_email, user_pass, login_time, login_ip, login_count FROM $table WHERE user_type='admin' AND user_id='$user_id'");
+$user = $DB->fetch_one("SELECT user_id, user_email, user_pass, login_time,nick_name, login_ip, login_count FROM $table WHERE user_type='admin' AND user_id='$user_id'");
+
 if (!$user) {
     $myself = array();
     setcookie('user_auth','');
@@ -36,7 +37,6 @@ if (!$user) {
         );
     }
 }
-
 
 if (empty($myself)) {
     msgbox('您还未登录或无权限！', './login.php');

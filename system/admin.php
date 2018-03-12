@@ -7,7 +7,7 @@
  */
 require('common.php');
 
-
+$smarty->assign('name',$user['nick_name']);
 $smarty->display('admin.html')
 
 ?>
