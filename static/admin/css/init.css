@@ -25,6 +25,9 @@ input,select {
 input[type='checkbox'],input[type='radio'] {
     position: relative !important;
 }
+.pagination {
+    margin: 0 !important;
+}
 /*清除浮动*/
 .clear::before,.clear::after{
     content: " ";

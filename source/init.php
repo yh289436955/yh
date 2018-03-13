@@ -31,6 +31,7 @@ if (is_file(ROOT_PATH.'config.php')) {
     exit('config.php file is missing!');
 }
 
+
 require(CORE_PATH.'include/mysql.php');
 require(CORE_PATH.'include/function.php');
 

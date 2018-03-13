@@ -18,11 +18,10 @@ function request_post(url,postData,callback) {
         dataType: 'json',
         data: postData,
         success: function (data) {
-            debugger
             if (data.status) {
                 callback(data);
             } else {
-                alert(data.error);
+                alert(data.msg);
             }
         },
         error : function (e) {
@@ -46,7 +45,7 @@ function request_get(url,postData,callback) {
             if (data.status) {
                 callback(data);
             } else {
-                alert(data.error);
+                alert(data.msg);
             }
         },
         error : function (e) {

@@ -98,5 +98,31 @@ function get_client_ip() {
     return $ip_addr;
 }
 
+//邮箱验证
+function is_valid_email($email) {
+    if (preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $email)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+//分页
+function page ($count,$page,$size) {
+
+    $sum = ceil(intval($count) / $size);            //获取总页数
+    global $smarty;
+    $data = array(
+        'sum' => $sum,
+        'page' => $page,
+    );
+
+
+
+
+    $smarty->assign('page',$data);
+}
+
 
 ?>

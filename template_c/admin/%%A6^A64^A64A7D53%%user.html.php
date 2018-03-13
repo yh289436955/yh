@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2018-03-12 09:35:50
+<?php /* Smarty version 2.6.31, created on 2018-03-13 08:11:49
          compiled from user.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'user.html', 42, false),)), $this); ?>
@@ -32,7 +32,7 @@ unset($_smarty_tpl_vars);
 
     <table class="table table-bordered table-hover">
         <tr>
-            <th><input type="checkbox"></th>
+            <th><label><input type="checkbox">全选</label></th>
             <th>用户名称</th>
             <th>用户类型</th>
             <th>用户邮箱</th>
@@ -59,19 +59,36 @@ unset($_smarty_tpl_vars);
             <td>
                 <a href="javascript:void(0)" class="btn btn-primary btn-xs" onclick="myUser('<?php echo $this->_tpl_vars['item']['user_id']; ?>
 ')">修改</a>
+                <?php if ($this->_tpl_vars['item']['user_id'] != '1'): ?>
                 <a href="javascript:void(0)" class="btn btn-danger btn-xs">删除</a>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; endif; unset($_from); ?>
     </table>
+
+    <div class="button_btn clear">
+        <div class="lf">
+            <a href="javascript:void(0)" class="btn btn-primary">删除</a>
+        </div>
+        <div class="lg">
+            <?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "page.html", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+        </div>
+    </div>
+
 </div>
 
 <script type="text/javascript" src="../static/admin/js/user.js"></script>
 
 <!--修改和新增模态框-->
 <div class="modal fade" id="myUser" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <form action="" method="post" class="form-horizontal">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="user.php" method="post" class="form-horizontal">
+            <input type="hidden" name="act" value="new">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -82,7 +99,7 @@ unset($_smarty_tpl_vars);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
                 </div>
             </div>
         </form>
