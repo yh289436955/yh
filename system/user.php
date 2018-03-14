@@ -74,7 +74,9 @@ if ($act == 'add') {
         msgbox("添加成功",'user.php');
 
     } elseif ($act == 'mdf') {
-
+        $where = array('user_id' => $_POST['user_id']);
+        $DB->update($table,$data,$where);
+        msgbox("修改成功",'user.php');
     }
 
 
@@ -101,17 +103,48 @@ if ($act == 'add') {
     ob_end_clean();
     $json['data'] = $data;
     exit(json_encode($json));
+} elseif ($act == 'del') {              //删除
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : array();
+    $del = $DB->delete($table,'user_id IN ('.dimplode($user_id).')');
+    $json = array('status' => true,'msg' => '','data' => '');
+    if (count($user_id) < 1) {
+        $json['status'] = false;
+        $json['msg'] = "参数错误";
+        exit(json_encode($json));
+    }
+
+    if ($del < 1) {
+        $json['status'] = false;
+        $json['msg'] = "参数错误";
+        exit(json_encode($json));
+    } else {
+        $json['status'] = true;
+        $json['msg'] = "";
+        exit(json_encode($json));
+    }
+
+
 } else {
-    $p = ($page - 1) * 3;
-    $sql = "SELECT * FROM $table LIMIT $p,3";
+    $key = '';
+    if ($act == 'search') {
+        $key = empty($_POST['key']) ? '' : $_POST['key'];
+        $page = 1;
+        $p = ($page - 1) * 10;
+        $sql = "SELECT * FROM $table WHERE 1 AND user_email LIKE '$key%' OR nick_name LIKE '%$key%' LIMIT $p,10";
+    } else {
+        $p = ($page - 1) * 10;
+        $sql = "SELECT * FROM $table LIMIT $p,10";
+    }
+
     $query = $DB->query($sql);
 
-    page($DB->get_count($table),$page,3);
+    page($DB->get_count($table),$page,10);
 
     $userList = array();
     while ($row = $DB->fetch_array($query)) {
         array_push($userList,$row);
     }
+    $smarty->assign('key',$key);
     $smarty->assign('list',$userList);
     $smarty->display('user.html');
 }

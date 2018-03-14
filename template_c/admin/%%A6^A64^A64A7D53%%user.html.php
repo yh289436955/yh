@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2018-03-13 08:11:49
+<?php /* Smarty version 2.6.31, created on 2018-03-14 06:20:43
          compiled from user.html */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'user.html', 42, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'user.html', 12, false),array('modifier', 'date_format', 'user.html', 40, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.html", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -10,27 +10,22 @@ unset($_smarty_tpl_vars);
 
 <div class="container-fluid">
     <ol class="breadcrumb">
-        <li><a href="#">系统管理</a></li>
+        <li><a href="admin.php">系统管理</a></li>
         <li class="active">用户管理</li>
     </ol>
 
     <div class="public-btn">
-        <form action="user.php" class="form-inline">
+        <form action="user.php" method="post" class="form-inline">
             <div class="form-group">
-                <label for="public_name">用户名称</label>
-                <input type="text" class="form-control" name="user_name" id="public_name" placeholder="用户名称">
-            </div>
-            <div class="form-group">
-                <label for="public_type">用户类型</label>
-                <input type="text" class="form-control" id="public_type" name="user_type" placeholder="用户类型">
+                <input type="text" class="form-control" name="key" id="public_name" value="<?php echo ((is_array($_tmp=@$this->_tpl_vars['key'])) ? $this->_run_mod_handler('default', true, $_tmp, '') : smarty_modifier_default($_tmp, '')); ?>
+" placeholder="请输入名称或者邮箱">
             </div>
             <input type="hidden" name="act" value="search">
             <button type="submit" class="btn btn-primary">搜索</button>
-            <button type="button" class="btn btn-primary" onclick="myUser()">新增</button>
         </form>
     </div>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover table_user">
         <tr>
             <th><label><input type="checkbox">全选</label></th>
             <th>用户名称</th>
@@ -44,8 +39,12 @@ unset($_smarty_tpl_vars);
     foreach ($_from as $this->_tpl_vars['item']):
 ?>
         <tr>
-            <td><input type="checkbox" value="<?php echo $this->_tpl_vars['item']['user_id']; ?>
-"></td>
+            <td>
+                <?php if ($this->_tpl_vars['item']['user_id'] != '1'): ?>
+                <input type="checkbox" name="user_id" value="<?php echo $this->_tpl_vars['item']['user_id']; ?>
+">
+                <?php endif; ?>
+            </td>
             <td><?php echo $this->_tpl_vars['item']['nick_name']; ?>
 </td>
             <td><?php echo $this->_tpl_vars['item']['user_type']; ?>
@@ -60,7 +59,8 @@ unset($_smarty_tpl_vars);
                 <a href="javascript:void(0)" class="btn btn-primary btn-xs" onclick="myUser('<?php echo $this->_tpl_vars['item']['user_id']; ?>
 ')">修改</a>
                 <?php if ($this->_tpl_vars['item']['user_id'] != '1'): ?>
-                <a href="javascript:void(0)" class="btn btn-danger btn-xs">删除</a>
+                <a href="javascript:void(0)" class="btn btn-danger btn-xs" onclick="userDel('row','<?php echo $this->_tpl_vars['item']['user_id']; ?>
+')">删除</a>
                 <?php endif; ?>
             </td>
         </tr>
@@ -69,7 +69,8 @@ unset($_smarty_tpl_vars);
 
     <div class="button_btn clear">
         <div class="lf">
-            <a href="javascript:void(0)" class="btn btn-primary">删除</a>
+            <a href="javascript:void(0)" class="btn btn-primary" onclick="myUser()">新增</a>
+            <a href="javascript:void(0)" class="btn btn-primary" onclick="userDel('.table_user')">删除</a>
         </div>
         <div class="lg">
             <?php $_smarty_tpl_vars = $this->_tpl_vars;

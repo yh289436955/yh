@@ -116,11 +116,35 @@ function page ($count,$page,$size) {
     $data = array(
         'sum' => $sum,
         'page' => $page,
+        'start' => '',
+        'end' => ''
     );
 
 
+    $start = array();
+    $end = array();
+    if ($page > 1) {
+        for ($i=$page-1;$i>0;$i--) {
+            if (count($start) > 2) {
+                break;
+            }
+            array_push($start,$i);
+        }
+        sort($start);
+    }
 
+    if ($sum > $page) {
+        for ($j=$sum;$j>$page;$j--) {
+            if (count($end) > 2) {
+                break;
+            }
+            array_push($end,$j);
+        }
+        sort($end);
+    }
 
+    $data['start'] = $start;
+    $data['end'] = $end;
     $smarty->assign('page',$data);
 }
 

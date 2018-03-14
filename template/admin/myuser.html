@@ -3,23 +3,25 @@
     <div class="col-lg-6">
         <select name="user_type" class="form-control">
             {if $user.user_type eq 'admin'}
-            <option value="member" selected>超级管理员</option>
-            {/if}
-            {if $user.user_type eq 'member'}
-            <option value="member" selected>注册会员</option>
+                <option value="member" selected>超级管理员</option>
             {else}
-            <option value="member">注册会员</option>
+                {if $user.user_type eq 'member'}
+                    <option value="member" selected>注册会员</option>
+                {else}
+                    <option value="member">注册会员</option>
+                {/if}
+                {if $user.user_type eq 'recruit'}
+                    <option value="recruit" selected>快速收录</option>
+                {else}
+                    <option value="recruit">快速收录</option>
+                {/if}
+                {if $user.user_type eq 'vip'}
+                    <option value="vip" selected>vip</option>
+                {else}
+                    <option value="vip">vip</option>
+                {/if}
             {/if}
-            {if $user.user_type eq 'recruit'}
-            <option value="recruit" selected>快速收录</option>
-            {else}
-            <option value="recruit">快速收录</option>
-            {/if}
-            {if $user.user_type eq 'vip'}
-            <option value="vip" selected>vip</option>
-            {else}
-            <option value="vip">vip</option>
-            {/if}
+
         </select>
     </div>
 </div>
@@ -47,3 +49,4 @@
         <input type="text" placeholder="请输入QQ号码" class="form-control" name="user_qq" value="{$user.user_qq|default:''}">
     </div>
 </div>
+<input type="hidden" name="user_id" value="{$user.user_id|default:''}">

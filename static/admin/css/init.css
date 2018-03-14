@@ -49,11 +49,11 @@ input[type='checkbox'],input[type='radio'] {
     height: 70px;
     padding: 0 20px;
     line-height: 70px;
-    color: #ffffff;
 }
-.header .lf {
+.header .lf a{
     font-size: 26px;
     letter-spacing: 10px;
+    color: #ffffff;
 }
 .header .lg a {
     color: #ffffff;

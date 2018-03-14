@@ -7,22 +7,29 @@
         </li>
         {else}
         <li>
-            <a href="?p={$page.page-1}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
+            <a href="?p={$page.page-1}" >上一页</a>
         </li>
         {/if}
 
+        {foreach from=$page.start item=item}
+            <li><a href="?p={$item}">{$item}</a></li>
+        {/foreach}
+
         <li class="active"><a href="javascript:void(0)">{$page.page}</a></li>
 
-        <!--<li class="active"><a href="#">1</a></li>-->
-        <!--<li><a href="#">2</a></li>-->
-        <!--<li><a href="#">3</a></li>-->
-        <!--<li><a href="#">4</a></li>-->
-        <!--<li><a href="#">5</a></li>-->
+
+        {foreach from=$page.end item=item}
+        <li><a href="?p={$item}">{$item}</a></li>
+        {/foreach}
+        {if $page.sum eq $page.page}
+        <li class="disabled">
+            <a href="javascript:void(0)">下一页</a>
+        </li>
+        {else}
         <li>
             <a href="?p={$page.page+1}">下一页</a>
         </li>
+        {/if}
         <li><a href="?p={$page.sum}">未页</a>
     </ul>
 </nav>
