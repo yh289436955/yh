@@ -7,5 +7,5 @@
  */
 //根路径
 define('ROOT_PATH', str_replace('\\', '/', dirname(__FILE__)).'/');
-echo "cs";
+
 ?>
